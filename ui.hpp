@@ -1,58 +1,45 @@
+#ifndef UI_HPP
+#define UI_HPP
+
 #include <string>
+#include <map>
 #include <stdint.h>
+#include "SDL2/SDL.h"
+#include "elements.hpp"
 
-class Rect {
-    public:
-        virtual void draw(); 
-        Rect(float x, float y, float z, unsigned int w, unsigned int h);
-        void resize(unsigned int w, unsigned int h);
-        void move(float x, float y);
-    private:
-        float x, y, z;
-        unsigned int w, h; // uints?
+struct Rectangle {
+    float x;
+    float y;
+    float z;
+
+    unsigned int h;
+    unsigned int w;
 };
 
-class Button : public Rect {
+class Renderer {
     public:
-        Button(float x, float y, float z, unsigned int w, unsigned int h, std::string label);
-
-        void onClick(void (*callback)(int)); 
-        void onHover(void (*callback)());
-
-        void draw();
-
-        uint8_t getState();
-        void setState(uint8_t state);
-
-    private:
-        std::string label; 
-        int value;
-
-        /*
-         * hmm enum hax istället?
-        uint8_t state;
-        const uint8_t STATE_HOVER;
-        const uint8_t STATE_CLICKED;
-        const uint8_t STATE_DISABLED;
-        */
+        virtual void drawRect(Rectangle rect);
+        virtual void drawText();
 };
 
-class Label : public Rect {
+class UiSdl : public Renderer {
     public:
-        Label(float x, float y, float z, unsigned int w, unsigned int h, std::string label);
-
-    private:
-        std::string label; 
+        void drawRect(Rectangle rect); 
+        void drawText(); 
+        SDL_Renderer* renderer;
 };
 
-class Textbox : public Label {
+class Rect;
+class Ui {
     public:
-        void draw();
+        void initSDL(SDL_Renderer* renderer);
+        void addElement();
+        void render();
+        Renderer* getRenderer();
+        std::map <std::string, Rect *> elements;
+        ~Ui();
 
     private:
-        bool scroll;
-        float contentHeight;
-        float contentWidth;
-        float scrollTop;
-        float scrollLeft;
+        Renderer *renderer;
 };
+#endif

@@ -3,43 +3,34 @@
 
 #include <string>
 #include <map>
+#include <list>
 #include <stdint.h>
-#include "SDL2/SDL.h"
 #include "elements.hpp"
-
-struct Rectangle {
-    float x;
-    float y;
-    float z;
-
-    unsigned int h;
-    unsigned int w;
-};
-
-class Renderer {
-    public:
-        virtual void drawRect(Rectangle rect);
-        virtual void drawText();
-};
-
-class UiSdl : public Renderer {
-    public:
-        void drawRect(Rectangle rect); 
-        void drawText(); 
-        SDL_Renderer* renderer;
-};
+#include "rectangle.hpp"
+#include "renderer.hpp"
+#include "event.hpp"
 
 class Rect;
+class SDL_Renderer;
+
 class Ui {
     public:
         void initSDL(SDL_Renderer* renderer);
         void addElement();
         void render();
         Renderer* getRenderer();
+
+        void handleInputEvents(Event);
+        
+        std::list<Event> getEvents();
+        void addEvent(Event e);
+
         std::map <std::string, Rect *> elements;
         ~Ui();
 
     private:
         Renderer *renderer;
+        std::list<Event> eventList;
+        void clearEvents();
 };
 #endif

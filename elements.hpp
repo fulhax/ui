@@ -3,6 +3,8 @@
 #include <string>
 #include <stdint.h>
 #include "ui.hpp"
+#include "rectangle.hpp"
+#include "event.hpp"
 
 class Ui;
 class Renderer;
@@ -10,8 +12,8 @@ struct Rectangle;
 class Rect {
     public:
         Rect(float x, float y, float z, unsigned int w, unsigned int h, Renderer *r);
+        virtual void handleEvent(Event event); 
         virtual void draw(); 
-        //virtual void init(float x, float y, float z, unsigned int w, unsigned int h); 
         virtual void resize(unsigned int w, unsigned int h);
         virtual void move(float x, float y);
     private:

@@ -10,18 +10,10 @@ Rect::Rect(float x, float y, float z, unsigned int w, unsigned int h, Renderer *
 
     this->renderer = r;
 }
-/*
-void Rect::init(float x, float y, float z, unsigned int w, unsigned int h, Ui *ui){
-    this->x = x;
-    this->y = y;
-    this->z = z; // z-index
 
-    this->w = w;
-    this->h = h;
-
-    this->ui = ui;
+void Rect::handleEvent(Event event){
+   printf("%i", event.type); 
 }
-*/
 
 void Rect::resize(unsigned int w, unsigned int h){
     this->w = w;

@@ -1,21 +1,5 @@
 #include "ui.hpp"
-
-void Renderer::drawRect(Rectangle rect){}
-void Renderer::drawText(){}
-
-void UiSdl::drawRect(Rectangle rect){
-    SDL_SetRenderDrawColor(this->renderer, 0, 200, 200, 200);
-    SDL_Rect r={
-        rect.x,
-        rect.y,
-        rect.w,
-        rect.h
-    };
-    SDL_RenderFillRect(this->renderer, &r);
-}
-
-void UiSdl::drawText(){}
-
+#include "uiSdl.hpp"
 
 void Ui::initSDL(SDL_Renderer* renderer){
     UiSdl *r = new UiSdl;
@@ -33,11 +17,30 @@ Renderer* Ui::getRenderer(){
     return this->renderer;
 }
 
+void Ui::handleInputEvent(Event event){
+    for(auto element : this->elements){
+        element.handleEvent(Event);
+    }
+}
+
+std::list<Event> Ui::getEvents(){
+    return this->eventList; 
+}
+
+void Ui::addEvent(Event e){
+    this->eventList.push_back(e);
+}
+
+void Ui::clearEvents(){
+    this->eventList.clear();
+}
+
 Ui::~Ui(){
     delete this->renderer;
+    this->clearEvents();
 
-    for(auto obj : this->elements) {
-        delete obj.second;
+    for(auto element : this->elements) {
+        delete element.second;
     }
     this->elements.clear();
 };

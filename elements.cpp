@@ -13,12 +13,16 @@ Rect::Rect(
 )
 {
     this->id = id;
+
     this->x = x;
     this->y = y;
     this->z = z; // z-index
 
     this->w = w;
     this->h = h;
+
+    this->resizable = resizable;
+    this->movable = movable;
 
     this->ui = ui;
     this->renderer = ui->getRenderer();
@@ -36,6 +40,10 @@ void Rect::handleEvent(const Event &e)
                 if(mm->state == MouseButtonState::BUTTON_DOWN) {
                     switch(mm->button) {
                         case MouseButton::BUTTON_LEFT:
+                            if(this->movable == false) {
+                                break;
+                            }
+
                             this->move(this->x += mm->rx, this->y += mm->ry);
                             this->ui->addEvent(
                                 OEvent(this->id, EventType::Drag)
@@ -43,6 +51,10 @@ void Rect::handleEvent(const Event &e)
                             break;
 
                         case MouseButton::BUTTON_RIGHT:
+                            if(this->resizable == false) {
+                                break;
+                            }
+
                             this->resize(this->w += mm->rx, this->h += mm->ry);
                             this->ui->addEvent(
                                 OEvent(this->id, EventType::Resize)

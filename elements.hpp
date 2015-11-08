@@ -12,6 +12,7 @@ struct Rectangle;
 class Rect {
     public:
         Rect(
+            int id,
             float x,
             float y,
             float z,
@@ -19,7 +20,7 @@ class Rect {
             unsigned int h,
             bool movable,
             bool resizable,
-            Renderer *r
+            Ui *ui
         );
         virtual bool inBounds(float x, float y); 
         virtual void handleEvent(const Event &event); 
@@ -27,22 +28,20 @@ class Rect {
         virtual void resize(unsigned int w, unsigned int h);
         virtual void move(float x, float y);
     private:
+        unsigned int id;
         bool movable;
         bool resizable;
         float x, y, z;
         unsigned int w, h; // uints?
         Renderer *renderer;
+        Ui *ui;
 };
 /*
 class Button : public Rect {
     public:
         Button(float x, float y, float z, unsigned int w, unsigned int h, std::string label);
 
-        void onClick(void (*callback)(int)); 
-        void onHover(void (*callback)());
-
         void draw();
-
         uint8_t getState();
         void setState(uint8_t state);
 

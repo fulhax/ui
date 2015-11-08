@@ -22,15 +22,15 @@ class Ui {
 
         void handleInputEvent(const Event &event);
         
-        std::list<Event> getEvents();
-        void addEvent(Event e);
+        std::list<OEvent> getEvents();
+        void addEvent(OEvent e);
 
         std::map <std::string, Rect *> elements;
         ~Ui();
 
     private:
         Renderer *renderer;
-        std::list<Event> eventList;
+        std::list<OEvent> eventList;
         void clearEvents();
 };
 #endif

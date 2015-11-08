@@ -23,11 +23,11 @@ void Ui::handleInputEvent(Event const &e){
     }
 }
 
-std::list<Event> Ui::getEvents(){
+std::list<OEvent> Ui::getEvents(){
     return this->eventList; 
 }
 
-void Ui::addEvent(Event e){
+void Ui::addEvent(OEvent e){
     this->eventList.push_back(e);
 }
 

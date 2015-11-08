@@ -3,6 +3,8 @@
 #include <stdint.h>
 
 enum class EventType {
+    Click,
+    Hover,
     MouseMotion,
     MouseButton,
     TextInput,
@@ -32,6 +34,12 @@ enum class MouseButtonState {
 class Event {
     public:
         EventType type;
+};
+
+class OEvent : public Event {
+    public:
+        OEvent(int id, EventType type);
+        int id;
 };
 
 

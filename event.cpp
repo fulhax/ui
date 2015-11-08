@@ -6,11 +6,33 @@ EventTextInput::EventTextInput(char *key)
     this->type = EventType::TextInput;
 }
 
-EventMouseMotion::EventMouseMotion(float x, float y)
+EventMouseMotion::EventMouseMotion(
+    float x,
+    float y,
+    float rx,
+    float ry
+)
 {
     this->type = EventType::MouseMotion;
     this->x = x;
     this->y = y;
+    this->rx = rx;
+    this->ry = ry;
+    this->button = MouseButton::NONE;
+    this->state = MouseButtonState::NONE;
+}
+
+EventMouseMotion::EventMouseMotion(
+    float x,
+    float y,
+    float rx,
+    float ry,
+    MouseButton button,
+    MouseButtonState state
+) : EventMouseMotion::EventMouseMotion(x, y, rx, ry)
+{
+    this->button = button;
+    this->state = state;
 }
 
 EventMouseButton::EventMouseButton(
@@ -18,14 +40,13 @@ EventMouseButton::EventMouseButton(
     float y,
     MouseButton button,
     MouseButtonState state
-) : EventMouseMotion::EventMouseMotion(x, y)
+) : EventMouseMotion::EventMouseMotion(x, y, 0, 0, button, state)
 {
     this->type = EventType::MouseButton;
-    this->button = button;
-    this->buttonState = state;
 }
 
-OEvent::OEvent(int id, EventType type){
+OEvent::OEvent(int id, EventType type)
+{
     this->id = id;
     this->type = type;
 }

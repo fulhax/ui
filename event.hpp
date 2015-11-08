@@ -1,10 +1,12 @@
-#ifndef EVENT_HPP 
+#ifndef EVENT_HPP
 #define EVENT_HPP
 #include <stdint.h>
 
 enum class EventType {
     Click,
     Hover,
+    Drag,
+    Resize,
     MouseMotion,
     MouseButton,
     TextInput,
@@ -21,55 +23,81 @@ enum class EventType {
 };
 
 enum class MouseButton {
+    NONE,
     BUTTON_LEFT,
-    BUTTON_RIGHT
+    BUTTON_RIGHT,
+    BUTTON_MIDDLE
 };
 
 enum class MouseButtonState {
+    NONE,
     BUTTON_UP,
     BUTTON_DOWN
 };
 
 
-class Event {
-    public:
-        EventType type;
+class Event
+{
+public:
+    EventType type;
 };
 
-class OEvent : public Event {
-    public:
-        OEvent(int id, EventType type);
-        int id;
+class OEvent : public Event
+{
+public:
+    OEvent(int id, EventType type);
+    int id;
 };
 
 
-class EventTextInput : public Event {
-    public:
-        EventTextInput(char *key);
-        char *key;
+class EventTextInput : public Event
+{
+public:
+    EventTextInput(char *key);
+    char *key;
 };
 
-class EventMouseMotion : public Event {
-    public:
-        EventMouseMotion(float x, float y);
-        float x;
-        float y;
-        //MouseState state; // state of the button
+class EventMouseMotion : public Event
+{
+public:
+    EventMouseMotion(
+        float x,
+        float y,
+        float rx,
+        float ry
+    );
+    EventMouseMotion(
+        float x,
+        float y,
+        float rx,
+        float ry,
+        MouseButton button,
+        MouseButtonState state
+    );
+
+    float x;
+    float y;
+    float rx;
+    float ry;
+    MouseButton button;
+    MouseButtonState state; // state of the button
 };
 
-class EventMouseButton : public EventMouseMotion {
-    public:
-        EventMouseButton(
-            float x,
-            float y,
-            MouseButton button,
-            MouseButtonState state
-        );
-        MouseButton button;
-        MouseButtonState buttonState;
+class EventMouseButton : public EventMouseMotion
+{
+public:
+    EventMouseButton(
+        float x,
+        float y,
+        MouseButton button,
+        MouseButtonState state
+    );
+
+
 };
 
-class EventMouseWheel {
+class EventMouseWheel
+{
     float x;
     float y;
 };

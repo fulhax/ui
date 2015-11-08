@@ -31,22 +31,38 @@ void Rect::handleEvent(const Event &e)
             EventMouseMotion *mm = (EventMouseMotion *) &e;
 
             if(this->inBounds(mm->x, mm->y)) {
-                printf("Hover\n");
                 this->ui->addEvent(OEvent(this->id, EventType::Hover));
-            }
-        }
-        break;
 
-        case EventType::MouseButton: {
-            EventMouseButton *me = (EventMouseButton *) &e;
+                if(mm->state == MouseButtonState::BUTTON_DOWN) {
+                    switch(mm->button) {
+                        case MouseButton::BUTTON_LEFT:
+                            this->move(this->x += mm->rx, this->y += mm->ry);
+                            this->ui->addEvent(
+                                OEvent(this->id, EventType::Drag)
+                            );
+                            break;
 
-            if(this->inBounds(me->x, me->y)) {
-                printf("Click\n");
-                this->ui->addEvent(OEvent(this->id, EventType::Click));
+                        case MouseButton::BUTTON_RIGHT:
+                            this->resize(this->w += mm->rx, this->h += mm->ry);
+                            this->ui->addEvent(
+                                OEvent(this->id, EventType::Resize)
+                            );
+                            break;
+                    }
+                }
             }
         }
         break;
             /*
+                case EventType::MouseButton: {
+                EventMouseButton *me = (EventMouseButton *) &e;
+
+                if(this->inBounds(me->x, me->y)) {
+                printf("Click\n");
+                this->ui->addEvent(OEvent(this->id, EventType::Click));
+                }
+                }
+                break;
                 case EventType::TextInput: {
                 EventTextInput *te = (EventTextInput *) &e;
                 printf("%s\n", te->key);

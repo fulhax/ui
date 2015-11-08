@@ -11,12 +11,24 @@ class Renderer;
 struct Rectangle;
 class Rect {
     public:
-        Rect(float x, float y, float z, unsigned int w, unsigned int h, Renderer *r);
-        virtual void handleEvent(Event event); 
+        Rect(
+            float x,
+            float y,
+            float z,
+            unsigned int w, 
+            unsigned int h,
+            bool movable,
+            bool resizable,
+            Renderer *r
+        );
+        virtual bool inBounds(float x, float y); 
+        virtual void handleEvent(const Event &event); 
         virtual void draw(); 
         virtual void resize(unsigned int w, unsigned int h);
         virtual void move(float x, float y);
     private:
+        bool movable;
+        bool resizable;
         float x, y, z;
         unsigned int w, h; // uints?
         Renderer *renderer;

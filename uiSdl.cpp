@@ -12,6 +12,3 @@ void UiSdl::drawRect(Rectangle rect){
 }
 
 void UiSdl::drawText(){}
-
-void UiSdl::onInputEvents(SDL_Event event){
-}

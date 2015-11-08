@@ -1,11 +1,13 @@
 #ifndef EVENT_HPP 
 #define EVENT_HPP
+#include <stdint.h>
 
 enum class EventType {
-    Keyboard,
     MouseMotion,
     MouseButton,
-    MouseWheel,
+    TextInput,
+    MouseWheel
+    //Keydown,
     // JoyAxis,
     // JoyBall,
     // JoyHat,
@@ -16,28 +18,53 @@ enum class EventType {
     // ControllerDevice
 };
 
-
-
-struct Event {
-    EventType type;
-    uint32_t time;
-    EventData data;
+enum class MouseButton {
+    BUTTON_LEFT,
+    BUTTON_RIGHT
 };
 
-class Event;
+enum class MouseButtonState {
+    BUTTON_UP,
+    BUTTON_DOWN
+};
 
-class EventKeyboard : public EventData {
-    uint32_t keycode;
-}
 
-class EventMouseMotion : public EventData {
-    int x;
-    int y;
-    uint32_t state; // state of the button
-}
+class Event {
+    public:
+        EventType type;
+};
+
+
+class EventTextInput : public Event {
+    public:
+        EventTextInput(char *key);
+        char *key;
+};
+
+class EventMouseMotion : public Event {
+    public:
+        EventMouseMotion(float x, float y);
+        float x;
+        float y;
+        //MouseState state; // state of the button
+};
 
 class EventMouseButton : public EventMouseMotion {
-    uint8_t button;
-}
+    public:
+        EventMouseButton(
+            float x,
+            float y,
+            MouseButton button,
+            MouseButtonState state
+        );
+        MouseButton button;
+        MouseButtonState buttonState;
+};
 
+class EventMouseWheel {
+    float x;
+    float y;
+};
+
+//class EventKeyboard : public Event {};
 #endif /* ifndef EVENT_HPP */

@@ -4,7 +4,6 @@
 #include "renderer.hpp"
 #include "rectangle.hpp"
 #include "ui.hpp"
-#include "InputEvent.hpp"
 
 class Ui;
 class UiSdl : public Renderer {

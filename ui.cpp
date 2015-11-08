@@ -17,9 +17,9 @@ Renderer* Ui::getRenderer(){
     return this->renderer;
 }
 
-void Ui::handleInputEvent(Event event){
+void Ui::handleInputEvent(Event const &e){
     for(auto element : this->elements){
-        element.handleEvent(Event);
+        element.second->handleEvent(e);
     }
 }
 

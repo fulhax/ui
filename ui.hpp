@@ -20,7 +20,7 @@ class Ui {
         void render();
         Renderer* getRenderer();
 
-        void handleInputEvents(Event);
+        void handleInputEvent(const Event &event);
         
         std::list<Event> getEvents();
         void addEvent(Event e);

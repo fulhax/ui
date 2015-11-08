@@ -1,6 +1,6 @@
 #ifndef UISDL_HPP
 #define UISDL_HPP
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 #include "renderer.hpp"
 #include "rectangle.hpp"
 #include "ui.hpp"

@@ -15,8 +15,8 @@ void UiSdl::drawRect(Rect *rect){
 
     SDL_SetRenderDrawColor(this->renderer, 0, cr, cg, cb);
     SDL_Rect r={
-        (int) (rect->getX() + rect->parent->getX()),
-        (int) (rect->getY() + rect->parent->getY()),
+        (int) rect->getX(),
+        (int) rect->getY(),
         (int) rect->getW(),
         (int) rect->getH()
     };

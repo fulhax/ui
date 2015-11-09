@@ -31,7 +31,7 @@ Rect::Rect(
 
 float Rect::getX()
 {
-    if(this->parent == nullptr) {
+    if(this->parent != nullptr) {
         return this->parent->x + this->x;
     } else {
         return this->x;
@@ -40,7 +40,7 @@ float Rect::getX()
 
 float Rect::getY()
 {
-    if(this->parent == nullptr) {
+    if(this->parent != nullptr) {
         return this->parent->x + this->x;
     } else {
         return this->y;

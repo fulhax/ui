@@ -27,7 +27,7 @@ class Ui {
         std::list<OEvent> getEvents();
         void addEvent(OEvent e);
 
-        std::map <std::string, Rect *> elements;
+        std::list <Rect *> elements;
         ~Ui();
 
     private:

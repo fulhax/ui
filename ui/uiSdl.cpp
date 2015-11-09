@@ -3,15 +3,16 @@
 
 #include "uiSdl.hpp"
 
-
 void UiSdl::drawRect(Rect *rect){
 
-    unsigned int seed = time(0);
-    int cr = rand_r(&seed) % 255;
-    seed++;
-    int cg = rand_r(&seed) % 255;
-    seed++;
-    int cb = rand_r(&seed) % 255;
+    if(this->seed == 0) this->seed = time(0);
+    int cr = rand_r(&this->seed) % 255;
+    int cg = rand_r(&this->seed) % 255;
+    int cb = rand_r(&this->seed) % 255;
+    
+    if(rect->parent != nullptr){
+
+    }
 
     SDL_SetRenderDrawColor(this->renderer, 0, cr, cg, cb);
     SDL_Rect r={

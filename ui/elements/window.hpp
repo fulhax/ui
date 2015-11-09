@@ -6,11 +6,13 @@
 class Window : public Rect
 {
 public:
+    using Rect::Rect; 
     virtual void draw();
     virtual void addElement(Rect *rect);
-    virtual std::list<Rect> getElements();
+    virtual std::list<Rect *> getElements();
+    ~Window();
 private:
-    std::list<Rect> elements;
+    std::list<Rect *> elements;
 };
 
 #endif /* ifndef UI_WINDOW_HPP */

@@ -8,6 +8,7 @@
 class Ui;
 class UiSdl : public Renderer {
     public:
+        unsigned int seed;
         void drawRect(Rect *rect); 
         void drawText(); 
         SDL_Renderer* renderer;

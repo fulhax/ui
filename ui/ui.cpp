@@ -16,7 +16,7 @@ void Ui::initSDL(SDL_Renderer *renderer)
 void Ui::render()
 {
     for(auto obj : this->elements) {
-        obj.second->draw();
+        obj->draw();
     }
 }
 
@@ -28,7 +28,7 @@ Renderer *Ui::getRenderer()
 void Ui::handleInputEvent(Event const &e)
 {
     for(auto element : this->elements) {
-        element.second->handleEvent(e);
+        element->handleEvent(e);
     }
 }
 
@@ -53,7 +53,7 @@ Ui::~Ui()
     this->clearEvents();
 
     for(auto element : this->elements) {
-        delete element.second;
+        delete element;
     }
 
     this->elements.clear();

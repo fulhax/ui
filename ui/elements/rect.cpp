@@ -41,7 +41,7 @@ float Rect::getX()
 float Rect::getY()
 {
     if(this->parent != nullptr) {
-        return this->parent->x + this->x;
+        return this->parent->y + this->y;
     } else {
         return this->y;
     }
@@ -138,8 +138,8 @@ void Rect::handleEvent(const Event &e)
 bool Rect::inBounds(float x, float y)
 {
     return (
-               (x > this->x && x < this->x + (float)this->w) &&
-               (y > this->y && y < this->y + (float)this->h)
+               (x > this->getX() && x < this->getX() + (float)this->getW()) &&
+               (y > this->getY() && y < this->getY() + (float)this->getH())
            );
 };
 

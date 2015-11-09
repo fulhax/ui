@@ -1,8 +1,10 @@
 #include "game.h"
 #include "ui/elements/rect.hpp"
+#include "ui/elements/window.hpp"
 #include "ui/event.hpp"
 
-Game::Game(){
+Game::Game()
+{
     this->window = nullptr;
     this->renderer = nullptr;
     this->running = false;
@@ -33,16 +35,24 @@ void Game::init()
     this->fpsTimer.start();
 
     this->ui.initSDL(this->renderer);
-    this->ui.elements["knark"] = new Rect(
+    Window *w = new Window(
         666, 90.f, 90.f, 50.f, 150, 150,
         true, true,
         &this->ui
     );
-    /*  this->ui.elements["1knark"] = new Rect(90.f, 500.f, 50.f, 50, 150,
-                                           this->ui.getRenderer());
-        this->ui.elements["2knark"] = new Rect(90.f, 900.f, 50.f, 250, 150,
-                                           this->ui.getRenderer());
-    */
+
+    w->addElement(new Rect(
+                      666, 0.f, 0.f, 50.f, 50, 50,
+                      true, true,
+                      &this->ui
+                  ));
+
+    w->addElement(new Rect(
+                      666, 60.f, 60.f, 50.f, 100, 100,
+                      true, true,
+                      &this->ui
+                  ));
+    this->ui.elements.push_back(w);
 
     unsigned int framesCount = 0;
 
@@ -170,7 +180,7 @@ void Game::passEventToUi(SDL_Event *event)
         }
 
         this->ui.handleInputEvent(e);
-    } else if(this->event.type == SDL_MOUSEWHEEL){
+    } else if(this->event.type == SDL_MOUSEWHEEL) {
         EventMouseWheel e(
             (float) event->wheel.x,
             (float) event->wheel.y

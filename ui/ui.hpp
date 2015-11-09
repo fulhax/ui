@@ -15,6 +15,7 @@ class SDL_Renderer;
 
 class Ui {
     public:
+        Ui();
         void initSDL(SDL_Renderer* renderer);
         void addElement();
         void render();

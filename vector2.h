@@ -1,7 +1,6 @@
 class Vec2 {
 
     public:
-        float angle;
         float x;
         float y;
         Vec2(float x=0, float y=0);

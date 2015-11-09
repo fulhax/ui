@@ -1,6 +1,10 @@
 #include "ui.hpp"
 #include "uiSdl.hpp"
 
+Ui::Ui(){
+    this->renderer = nullptr;
+}
+
 void Ui::initSDL(SDL_Renderer* renderer){
     UiSdl *r = new UiSdl;
     r->renderer = renderer;
@@ -43,4 +47,4 @@ Ui::~Ui(){
         delete element.second;
     }
     this->elements.clear();
-};
+}

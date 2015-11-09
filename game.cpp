@@ -2,6 +2,14 @@
 #include "ui/elements.hpp"
 #include "ui/event.hpp"
 
+Game::Game(){
+    this->window = nullptr;
+    this->renderer = nullptr;
+    this->running = false;
+    this->delta = 0.f;
+    this->fps = 0;
+}
+
 void Game::init()
 {
     if(SDL_Init(SDL_INIT_VIDEO) < 0) {

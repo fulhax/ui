@@ -53,7 +53,7 @@ public:
 class EventTextInput : public Event
 {
 public:
-    EventTextInput(char *key);
+    explicit EventTextInput(char *key);
     char *key;
 };
 
@@ -100,6 +100,10 @@ class EventMouseWheel
 {
     float x;
     float y;
+    EventMouseWheel(
+        float x,
+        float y
+    );
 };
 
 //class EventKeyboard : public Event {};

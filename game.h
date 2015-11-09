@@ -17,6 +17,7 @@ class Game {
     Ui ui;
 
     public:
+        Game();
         void render();
         void handleEvents();
         void update();

@@ -1,10 +1,11 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
-#include "rectangle.hpp"
+#include "elements/rect.hpp"
 
+class Rect;
 class Renderer {
     public:
-        virtual void drawRect(Rectangle rect);
+        virtual void drawRect(Rect *rect);
         virtual void drawText();
         virtual void onInputEvent();
 };

@@ -1,50 +1,60 @@
 #include "ui.hpp"
 #include "uiSdl.hpp"
 
-Ui::Ui(){
+Ui::Ui()
+{
     this->renderer = nullptr;
 }
 
-void Ui::initSDL(SDL_Renderer* renderer){
+void Ui::initSDL(SDL_Renderer *renderer)
+{
     UiSdl *r = new UiSdl;
     r->renderer = renderer;
-    this->renderer = r; 
+    this->renderer = r;
 }
 
-void Ui::render(){
+void Ui::render()
+{
     for(auto obj : this->elements) {
         obj.second->draw();
     }
 }
 
-Renderer* Ui::getRenderer(){
+Renderer *Ui::getRenderer()
+{
     return this->renderer;
 }
 
-void Ui::handleInputEvent(Event const &e){
-    for(auto element : this->elements){
+void Ui::handleInputEvent(Event const &e)
+{
+    for(auto element : this->elements) {
         element.second->handleEvent(e);
     }
 }
 
-std::list<OEvent> Ui::getEvents(){
-    return this->eventList; 
+std::list<OEvent> Ui::getEvents()
+{
+    return this->eventList;
 }
 
-void Ui::addEvent(OEvent e){
+void Ui::addEvent(OEvent e)
+{
     this->eventList.push_back(e);
 }
 
-void Ui::clearEvents(){
+void Ui::clearEvents()
+{
     this->eventList.clear();
 }
 
-Ui::~Ui(){
+Ui::~Ui()
+{
     delete this->renderer;
     this->clearEvents();
 
     for(auto element : this->elements) {
         delete element.second;
     }
+
     this->elements.clear();
 }

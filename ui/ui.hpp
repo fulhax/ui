@@ -5,12 +5,13 @@
 #include <map>
 #include <list>
 #include <stdint.h>
-#include "elements.hpp"
+#include "elements/rect.hpp"
 #include "rectangle.hpp"
 #include "renderer.hpp"
 #include "event.hpp"
 
 class Rect;
+class Renderer;
 class SDL_Renderer;
 
 class Ui {

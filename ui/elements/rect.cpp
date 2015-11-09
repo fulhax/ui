@@ -1,4 +1,4 @@
-#include "elements.hpp"
+#include "rect.hpp"
 
 Rect::Rect(
     int id,
@@ -26,6 +26,45 @@ Rect::Rect(
 
     this->ui = ui;
     this->renderer = ui->getRenderer();
+    this->detach();
+}
+
+float Rect::getX()
+{
+    if(this->parent == nullptr) {
+        return this->parent->x + this->x;
+    } else {
+        return this->x;
+    }
+}
+
+float Rect::getY()
+{
+    if(this->parent == nullptr) {
+        return this->parent->x + this->x;
+    } else {
+        return this->y;
+    }
+}
+
+unsigned int Rect::getW()
+{
+    return this->w;
+}
+
+unsigned int Rect::getH()
+{
+    return this->h;
+}
+
+void Rect::attach(Rect *parent)
+{
+    this->parent = parent;
+}
+
+void Rect::detach()
+{
+    this->parent = nullptr;
 }
 
 void Rect::handleEvent(const Event &e)
@@ -118,8 +157,7 @@ void Rect::move(float x, float y)
 
 void Rect::draw()
 {
-    Rectangle rect = {this->x, this->y, this->z, this->h, this->w};
-    this->renderer->drawRect(rect);
+    this->renderer->drawRect(this);
 }
 
 /*

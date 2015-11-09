@@ -1,5 +1,5 @@
 #include "game.h"
-#include "ui/elements.hpp"
+#include "ui/elements/rect.hpp"
 #include "ui/event.hpp"
 
 Game::Game(){

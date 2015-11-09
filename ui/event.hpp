@@ -96,14 +96,16 @@ public:
 
 };
 
-class EventMouseWheel
+class EventMouseWheel : public Event
 {
-    float x;
-    float y;
+public:
     EventMouseWheel(
         float x,
         float y
     );
+
+    float x;
+    float y;
 };
 
 //class EventKeyboard : public Event {};

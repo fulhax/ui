@@ -60,26 +60,38 @@ void Rect::handleEvent(const Event &e)
                                 OEvent(this->id, EventType::Resize)
                             );
                             break;
+
+
+                        default:
+                            break;
                     }
                 }
             }
         }
         break;
-            /*
-                case EventType::MouseButton: {
-                EventMouseButton *me = (EventMouseButton *) &e;
 
-                if(this->inBounds(me->x, me->y)) {
-                printf("Click\n");
-                this->ui->addEvent(OEvent(this->id, EventType::Click));
-                }
-                }
-                break;
-                case EventType::TextInput: {
-                EventTextInput *te = (EventTextInput *) &e;
-                printf("%s\n", te->key);
+        default:
+            break;
+            /*
+                case EventType::MouseWheel: {
+                EventMouseWheel *mm = (EventMouseWheel *) &e;
+                printf("Mouse wheel, x:%f y:%f\n", mm->x, mm->y);
                 }
                 break;
+                    case EventType::MouseButton: {
+                    EventMouseButton *me = (EventMouseButton *) &e;
+
+                    if(this->inBounds(me->x, me->y)) {
+                    printf("Click\n");
+                    this->ui->addEvent(OEvent(this->id, EventType::Click));
+                    }
+                    }
+                    break;
+                    case EventType::TextInput: {
+                    EventTextInput *te = (EventTextInput *) &e;
+                    printf("%s\n", te->key);
+                    }
+                    break;
             */
     }
 }

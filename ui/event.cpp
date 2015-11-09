@@ -45,6 +45,14 @@ EventMouseButton::EventMouseButton(
     this->type = EventType::MouseButton;
 }
 
+
+EventMouseWheel::EventMouseWheel(float x, float y){
+    this->x = x;
+    this->y = y;
+
+    this->type = EventType::MouseWheel;
+}
+
 OEvent::OEvent(int id, EventType type)
 {
     this->id = id;

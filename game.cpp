@@ -170,6 +170,13 @@ void Game::passEventToUi(SDL_Event *event)
         }
 
         this->ui.handleInputEvent(e);
+    } else if(this->event.type == SDL_MOUSEWHEEL){
+        EventMouseWheel e(
+            (float) event->wheel.x,
+            (float) event->wheel.y
+        );
+
+        this->ui.handleInputEvent(e);
     }
 }
 

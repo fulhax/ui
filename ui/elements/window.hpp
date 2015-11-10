@@ -1,7 +1,7 @@
 #ifndef UI_WINDOW_HPP
 #define UI_WINDOW_HPP
-
 #include "rect.hpp"
+#include "../event.hpp"
 
 class Window : public Rect
 {

@@ -42,6 +42,7 @@ private:
     bool resizable;
     float x, y, z;
     unsigned int w, h; // uints?
+protected:
     Renderer *renderer;
     Ui *ui;
 };

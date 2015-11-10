@@ -43,13 +43,13 @@ void Game::init()
 
     w->addElement(new Rect(
                       666, 0.f, 0.f, 50.f, 50, 50,
-                      true, true,
+                      false, false,
                       &this->ui
                   ));
 
     w->addElement(new Rect(
-                      666, 60.f, 60.f, 50.f, 100, 100,
-                      true, true,
+                      666, 0.f, 0.f, 50.f, 100, 100,
+                      false, false,
                       &this->ui
                   ));
     this->ui.elements.push_back(w);

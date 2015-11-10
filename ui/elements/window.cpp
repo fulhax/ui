@@ -4,11 +4,12 @@
 
 void Window::draw()
 {
-    Rect::draw();
 
-    for(auto element : this->getElements()) {
+    this->renderer->drawWindow(this);
+    /*for(auto element : this->getElements()) {
         element->draw();
     }
+    */
 }
 
 void Window::handleEvent(const Event &event)  

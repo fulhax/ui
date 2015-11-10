@@ -11,6 +11,14 @@ void Window::draw()
     }
 }
 
+void Window::handleEvent(const Event &event)  
+{
+    Rect::handleEvent(event);
+    for(auto element : this->getElements()){
+        element->handleEvent(event);
+    }
+}
+
 void Window::addElement(Rect *rect)
 {
     rect->attach(this);

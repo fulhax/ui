@@ -9,6 +9,7 @@ public:
     using Rect::Rect; 
     virtual void draw();
     virtual void addElement(Rect *rect);
+    virtual void handleEvent(const Event &event);
     virtual std::list<Rect *> getElements();
     ~Window();
 private:

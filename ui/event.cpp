@@ -46,7 +46,8 @@ EventMouseButton::EventMouseButton(
 }
 
 
-EventMouseWheel::EventMouseWheel(float x, float y){
+EventMouseWheel::EventMouseWheel(float x, float y)
+{
     this->x = x;
     this->y = y;
 

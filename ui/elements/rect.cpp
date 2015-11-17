@@ -1,4 +1,5 @@
 #include "rect.hpp"
+#include "../ui.hpp"
 
 Rect::Rect(
     int id,

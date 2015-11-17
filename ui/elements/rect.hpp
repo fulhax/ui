@@ -1,15 +1,12 @@
-#ifndef ELEMENTS_H
-#define ELEMENTS_H
+#ifndef RECT_H
+#define RECT_H
 #include <list>
 #include <string>
 #include <stdint.h>
-#include "../ui.hpp"
-#include "../rectangle.hpp"
 #include "../event.hpp"
 
 class Ui;
 class Renderer;
-struct Rectangle;
 class Rect
 {
 public:

@@ -9,30 +9,40 @@ void UiSdl::drawWindow(Window *window)
                                renderer,
                                SDL_PIXELFORMAT_RGBA8888,
                                SDL_TEXTUREACCESS_TARGET,
-                               (int) 500,
-                               (int) 500
+                               (int) window->getW(),
+                               (int) window->getH()
                            );
     SDL_SetRenderTarget(this->renderer, texture);
-    SDL_SetRenderDrawColor(this->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer);
+    //SDL_SetRenderDrawColor(this->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
-    SDL_Rect r = {
+    SDL_Rect textureRect = {
         (int) window->getX(),
         (int) window->getY(),
         (int) window->getW(),
         (int) window->getH()
     };
-    
-    SDL_SetRenderDrawColor(this->renderer, 0xFF, 0x55, 0x55, 0x55);
-    SDL_RenderDrawRect(this->renderer, &r);
-    SDL_RenderFillRect(this->renderer, &r);
-    printf("hit\n");
-    this->drawRect(window);
-    /*for(auto el : window->getElements()){
+
+    SDL_Rect windowRect = {
+        (int) window->getX(),
+        (int) window->getY(),
+        (int) window->getW(),
+        (int) window->getH()
+    };
+
+    SDL_SetRenderDrawColor(this->renderer, 0x00, 0x00, 0x00, 0x00);
+    SDL_RenderDrawRect(this->renderer, &windowRect);
+    SDL_RenderFillRect(this->renderer, &windowRect);
+    SDL_RenderPresent(this->renderer);
+
+    //this->drawRect(window);
+    /*  for(auto el : window->getElements()){
         el->draw();
-    }*/
+        }*/
 
     SDL_SetRenderTarget(this->renderer, NULL);
-    SDL_RenderCopy(this->renderer, texture, NULL, NULL);
+    SDL_RenderCopy(this->renderer, texture, NULL, &textureRect);
+    SDL_DestroyTexture(texture);
 }
 
 void UiSdl::drawRect(Rect *rect)
@@ -56,6 +66,7 @@ void UiSdl::drawRect(Rect *rect)
             (int) rect->getW(),
             (int) rect->getH()
         };
+        printf("(Rect) X:%d, Y:%d, W:%d, H:%d\n", r.x, r.y, r.w, r.h);
         SDL_RenderFillRect(this->renderer, &r);
     }
 }

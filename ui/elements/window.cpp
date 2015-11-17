@@ -1,21 +1,22 @@
 #include "window.hpp"
-#include <list>
+#include "../renderer.hpp"
 
 
 void Window::draw()
 {
 
     this->renderer->drawWindow(this);
-    /*for(auto element : this->getElements()) {
+    /*  for(auto element : this->getElements()) {
         element->draw();
-    }
+        }
     */
 }
 
-void Window::handleEvent(const Event &event)  
+void Window::handleEvent(const Event &event)
 {
     Rect::handleEvent(event);
-    for(auto element : this->getElements()){
+
+    for(auto element : this->getElements()) {
         element->handleEvent(event);
     }
 }
